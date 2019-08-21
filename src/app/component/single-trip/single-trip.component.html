@@ -1,0 +1,347 @@
+<h1 class="text-center">Single-trip</h1>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h4>Username</h4>
+            <h4>Destination</h4>
+            <h4 routerLink="/home/inquiry-form">Inquiry-form</h4>
+            <div>
+                <!-- Add-plan-->
+                <h4>Plans</h4>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#myModal">Add-plan</button>
+
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Add-plan</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form [formGroup]="planForm" (ngSubmit)="addplan(planForm.value)">
+                                            <div class="form-group">
+                                                <label>Title:</label>
+                                                <input type="text" class="form-control" id="title"
+                                                    placeholder="Enter title" name="title" formControlName='title'
+                                                    [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                                                <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.title.errors.required">Title is required</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Content:</label>
+                                                <div>
+                                                    <ckeditor class="ckeditor margin-left-15" style="width:100%;"
+                                                        [editor]="Editor" (ready)="onReady($event)"
+                                                        (change)="onChange($event)" formControlName='content'
+                                                        [ngClass]="{ 'is-invalid': submitted && f.content.errors }">
+                                                    </ckeditor>
+                                                </div>
+                                                <div *ngIf="submitted && f.content.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.content.errors.required">Content is required</div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-default" [disabled]="!planForm.valid">Add-plan</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-primary">Send-plan</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Document-request -->
+            <div>
+                <h4>Document-request</h4>
+                <div class="row">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#myModal1">Document-request</button>
+
+
+                    <div class="modal fade" id="myModal1" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Document-request</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form [formGroup]="planForm" (ngSubmit)="senddocumentrequest(planForm.value)">
+                                        <div class="form-group">
+                                            <label>Title:</label>
+                                            <input type="text" class="form-control" id="title" placeholder="Enter title"
+                                                name="title" formControlName='title'
+                                                [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                                            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                                <div *ngIf="f.title.errors.required">Title is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <label>Content:</label>
+                                                <input type="text" class="form-control" id="content"
+                                                    placeholder="Enter content" name="content" formControlName='content'
+                                                    [ngClass]="{ 'is-invalid': submitted && f.content.errors }">
+                                                <div *ngIf="submitted && f.content.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.content.errors.required">Content is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-default" [disabled]="!planForm.valid">Submit</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment-request -->
+            <div>
+                <h4>Payment-request</h4>
+                <div class="row">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#myModal2">Payment-request</button>
+
+                    <div class="modal fade" id="myModal2" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Payment-request</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form [formGroup]="paymentForm">
+                                        <div class="form-group">
+                                            <label>Amount:</label>
+                                            <input type="text" class="form-control" id="amount"
+                                                placeholder="Enter amount" name="amount" formControlName='amount'
+                                                [ngClass]="{ 'is-invalid': submitted && f1.amount.errors }">
+                                            <div *ngIf="submitted && f1.amount.errors" class="invalid-feedback">
+                                                <div *ngIf="f1.amount.errors.required">Amount is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <label>Content:</label>
+                                                <input type="text" class="form-control" id="content"
+                                                    placeholder="Enter content" name="content" formControlName='content'
+                                                    [ngClass]="{ 'is-invalid': submitted && f1.content.errors }">
+                                                <div *ngIf="submitted && f1.content.errors" class="invalid-feedback">
+                                                    <div *ngIf="f1.content.errors.required">Content is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <label>Discount:</label>
+                                                <input type="text" class="form-control" id="Discount"
+                                                    placeholder="Enter Discount" name="Discount"
+                                                    formControlName='discount'
+                                                    [ngClass]="{ 'is-invalid': submitted && f1.discount.errors }">
+                                                <div *ngIf="submitted && f1.discount.errors" class="invalid-feedback">
+                                                    <div *ngIf="f1.discount.errors.required">Discount is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-default"
+                                            (click)="sendPaymentRequest(paymentForm.value)"[disabled]="!paymentForm.valid">Submit</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Add-quotations -->
+            <div>
+                <h4>Add-quotations</h4>
+                <div class="row">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#myModal3">Add-quotations</button>
+
+
+                    <div class="modal fade" id="myModal3" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add-quotations</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label>Basic:</label>
+                                            <input type="text" class="form-control" id="Basic" placeholder="Enter Basic"
+                                                name="Basic">
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <label>Hotels:</label>
+                                                <input type="text" class="form-control" id="Hotels"
+                                                    placeholder="Enter Hotels" name="Hotels">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <label>Sightseeing:</label>
+                                                <input type="text" class="form-control" id="Sightseeing"
+                                                    placeholder="Enter Sightseeing" name="Sightseeing">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <label>Final-cost:</label>
+                                                <input type="text" class="form-control" id="Final-cost"
+                                                    placeholder="Enter Final-cost" name="Final-cost">
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 routerLink="/home/prefrences">Prefrences</h4>
+            <h4 routerLink="/home/customer-briefcase">Customer-briefcase</h4>
+            <div>
+                <h4>Payment-history</h4>
+            </div>
+
+            <div class="row">
+                <!-- Add-final-plan -->
+                <div class="col-4">
+                    <button type="button" class="btn btn-primary">Add-final-plan</button>
+                </div>
+
+                <!-- Add-tickets -->
+                <div class="col-4">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#myModal4">Add-tickets</button>
+
+                    <div class="modal fade" id="myModal4" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add-tickets</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form [formGroup]="addTicketForm" (ngSubmit)="addTicket(addTicketForm.value)">
+                                        <div class="form-group" >
+                                            <label>Name of passangers:</label>
+                                            <input type="text" class="form-control" id="name" placeholder="Enter name"
+                                                name="name" formControlName='nameOfPassenger'
+                                                [ngClass]="{ 'is-invalid': submitted && f2.nameOfPassenger.errors }">
+                                            <div *ngIf="submitted && f2.nameOfPassenger.errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f2.nameOfPassenger.errors.required">Name of passangers is
+                                                    required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <label>Date:</label>
+                                                <input type="date" class="form-control" id="date"
+                                                    placeholder="Enter date" name="date" formControlName='date'
+                                                    [ngClass]="{ 'is-invalid': submitted && f2.date.errors }">
+                                                <div *ngIf="submitted && f2.date.errors" class="invalid-feedback">
+                                                    <div *ngIf="f2.date.errors.required">date is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <label>Choose File:</label>
+                                                <input type="file" class="form-control" id="file" name="file"
+                                                    formControlName='path'
+                                                    [ngClass]="{ 'is-invalid': submitted && f2.path.errors }">
+                                                <div *ngIf="submitted && f2.path.errors" class="invalid-feedback">
+                                                    <div *ngIf="f2.path.errors.required">Choose File</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-default" [disabled]="!addTicketForm.valid" >Submit</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add-voucher -->
+                <div class="col-4">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#myModal5">Add-vouchers</button>
+
+
+                    <div class="modal fade" id="myModal5" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add-voucher</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label>Type:</label>
+                                            <input type="text" class="form-control" id="type" placeholder="Enter type"
+                                                name="type">
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <label>Amendments:</label>
+                                                <input type="date" class="form-control" id="amendments"
+                                                    placeholder="Enter amendments" name="amendments">
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

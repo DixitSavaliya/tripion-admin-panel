@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div id="sidebar">
+        <div id="clickable">
+            <h1>Tripion-App</h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="sidenav__list-item" routerLink="/home/dashboard">Dashboard</li>
+                <li class="sidenav__list-item" routerLink="/home/all-customers-list">All Customers List</li>
+                <li class="sidenav__list-item" routerLink="/home/past-trips">Past-trips</li>
+                <li class="sidenav__list-item" routerLink="/home/notifications">Notifications</li>
+                <li class="sidenav__list-item" routerLink="/home/account">Account</li>
+                <li class="sidenav__list-item" (click)="logout()">logout</li>
+            </ul>
+        </nav>
+        <div id="logo"></div>
+
+    </div>
+</div>
+<div class="container body_content">
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-10 margin-top">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

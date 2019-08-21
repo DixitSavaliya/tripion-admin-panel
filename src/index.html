@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<title>TripionApp</title>
@@ -12,15 +13,81 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Material Design Bootstrap -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/css/mdb.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+	<!------ Include the above in your HEAD tag ---------->
+
+
+
 </head>
+
 <body>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/js/mdb.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/js/mdb.min.js"></script>
+
+
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+			$(".btn-pref .btn").click(function () {
+				$(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+				// $(".tab").addClass("active"); // instead of this do the below 
+				$(this).removeClass("btn-default").addClass("btn-primary");
+			});
+		});
+
+		$("#clickable").click(function () {
+			var margin = parseInt($('#sidebar').css('marginLeft'));
+			if (margin == 0) {
+				hideSidebar();
+			} else {
+				showSidebar();
+			}
+		});
+
+		// Sidebar Mouse Enter Function
+		$("#sidebar").mouseenter(
+			function () {
+				showSidebar();
+			}
+		);
+
+		// HIDE SIDEBAR
+		function hideSidebar() {
+			$("#sidebar").animate({
+				opacity: 0.8,
+				marginLeft: "-22%",
+			}, 500, 'easeOutExpo');
+			// Expand Content
+			$("#content").animate({
+				width: "97%",
+			}, 500, 'easeOutExpo');
+		}
+		// SHOW SIDEBAR
+		function showSidebar() {
+			console.log("showSidebar");
+			$("#sidebar").animate({
+				opacity: 1,
+				marginLeft: "0%",
+			}, 500, 'easeOutExpo');
+			// Shrink Content
+			$("#content").animate({
+				width: "75%",
+			}, 500, 'easeOutExpo');
+		}
+	</script>
+
 	<app-root></app-root>
 </body>
+
 </html>

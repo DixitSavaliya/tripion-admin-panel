@@ -2,26 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 import * as CryptoJS from 'crypto-js';
+import { AlertService } from '../../services/aleart.service';
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
 
-	// encryptdata:
-	logindata = {
-		email: "admin@gmail.com",
-		password: "admin@123"
-	}
+export class LoginComponent implements OnInit {
 
 	loginForm: FormGroup;
 	submitted = false;
-	key = "tripion@raoinfotech";
-	constructor(private formBuilder: FormBuilder, private router: Router, private _loginService: LoginService) {
+	key = "tripion@raoinfor";
+	show = false;
+
+	constructor(private formBuilder: FormBuilder, private router: Router, private _loginService: LoginService, public _alertService: AlertService) {
 	}
 
 	/** ngonit call */
@@ -36,17 +33,25 @@ export class LoginComponent implements OnInit {
 
 	/** Admin login */
 	onSubmit(data) {
-		console.log("data", data);
 		const encrypted = CryptoJS.AES.encrypt(JSON.stringify(data), this.key).toString();
-		console.log("string===",typeof encrypted);
-		const json = {encrypted};
+		const json = { encrypted };
 		this.submitted = true;
 		if (this.loginForm.invalid) {
 			return;
 		}
-		this._loginService.login(json).pipe(first())
-			.subscribe(data => {
-				console.log("data", data)
+		this._loginService.login(json)
+			.subscribe((data: any) => {
+				console.log("data", data);
+				this._alertService.successAlert(data.message);
+				this.router.navigate(['/home/dashboard']);
+			}, err => {
+				console.log('err in login===============>', err);
+				this._alertService.failurAlert(err.error.message);
 			})
+	}
+
+	/** Password hide and show */
+	password() {
+		this.show = !this.show;
 	}
 }

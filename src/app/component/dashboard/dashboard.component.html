@@ -1,1 +1,68 @@
-<p>dashboard works!</p>
+<h1 class="text-center">Dashboard</h1>
+<div class="container">
+  <div>
+    <ul class="nav nav-tabs md-tabs" id="myTabMD" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab-md" data-toggle="tab" href="#home-md" role="tab" aria-controls="home-md"
+          aria-selected="true">Trip-inquiry</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab-md" data-toggle="tab" href="#profile-md" role="tab"
+          aria-controls="profile-md" aria-selected="false">Passport-inquiry</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab-md" data-toggle="tab" href="#contact-md" role="tab"
+          aria-controls="contact-md" aria-selected="false">Visa-inquiry</a>
+      </li>
+    </ul>
+    <div class="tab-content card pt-5" id="myTabContentMD">
+      <div class="tab-pane fade show active" id="home-md" role="tabpanel" aria-labelledby="home-tab-md">
+        <div class="row">
+          <div class="col-4">
+            <p class="trip-name">Trip-Title</p>
+          </div>
+          <div class="col-4">
+            <p class="trip-name">Customer-Name</p>
+          </div>
+          <div class="col-4">
+            <p class="right">Staus</p>
+          </div>
+        </div>
+        <hr/>
+        <div *ngFor="let trip of allTrips">
+          <div class="row">
+            <div class="col-4">
+              <p class="trip-name" (click)="userdata(trip._id)">{{trip.userId.destinationFinderId.title}}</p>
+            </div>
+            <div class="col-4">
+              <p class="trip-name">{{trip.userId.name}}</p>
+            </div>
+            <div class="col-4">
+              <p class="right">{{trip.status}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="profile-md" role="tabpanel" aria-labelledby="profile-tab-md">
+        <p>Hello1</p>
+      </div>
+      <div class="tab-pane fade" id="contact-md" role="tabpanel" aria-labelledby="contact-tab-md">
+        <p>Hello2</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <button type="button" class="btn btn-primary" routerLink="/home/notifications">Response Of Request</button>
+    </div>
+
+    <div class="col-4">
+      <button type="button" class="btn btn-primary" routerLink="/home/all-customers-list">All-Customers</button>
+    </div>
+
+    <div class="col-4">
+      <button type="button" class="btn btn-primary" routerLink="/home/account">Payment</button>
+    </div>
+
+  </div>
+</div>

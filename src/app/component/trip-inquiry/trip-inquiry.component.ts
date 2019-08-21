@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from '../../services/customer.service';
 
 @Component({
   selector: 'app-trip-inquiry',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TripInquiryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _customerService: CustomerService) { }
 
   ngOnInit() {
+    this.getAllInquiry();
   }
 
+  getAllInquiry() {
+    this._customerService.getAllInquiryCustomers().subscribe((res: any) => {
+      console.log("response=====", res);
+    })
+  }
 }

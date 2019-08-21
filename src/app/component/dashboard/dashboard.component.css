@@ -1,0 +1,23 @@
+.text-center{
+    text-align: center;
+}
+
+ul.nav.nav-tabs {
+    background-color: antiquewhite;
+    margin: 15px;
+}
+
+ul.nav.nav-tabs li {
+    margin: 15px;
+}
+.right{
+    text-align: right;
+}
+.card {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    border: 0;
+    padding: 15px;
+}
+.trip-name{
+    cursor: pointer;
+}

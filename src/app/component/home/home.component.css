@@ -1,0 +1,90 @@
+.body_content{
+	padding-left: 79px;
+}
+@media (max-width: 575px){
+	.body_content{
+		padding-left: 15px;
+	}
+}
+.col-11.margin-top {
+    margin-top: 50px;
+}
+html,
+body {
+	height: 100%;
+	font-family: "helvetica";
+	line-height: 18px;
+}
+h1 {
+	text-align: center;
+}
+a {
+	color: white;
+	text-decoration: none;
+}
+/*SIDEBAR *************************/
+
+#sidebar {
+	position: fixed;
+	width: 20%;
+	height: 100%;
+	background: #23404e;
+}
+#clickable {
+	position: relative;
+	top: 10px;
+	margin: auto;
+	width: 90%;
+	background: white;
+	color: black;
+}
+
+#clickable h1 {
+	padding: 10px;
+  font-size:14px;
+}
+#logo {
+	position: absolute;
+	bottom: 10px;
+	left: calc(50% - 25px);
+	z-index: 1;
+	width: 50px;
+	height: 50px;
+	background: url('http://www.alexkatz.me/images/logo.png');
+	background-size: contain;
+}
+nav {
+	margin-top: 30px;
+}
+nav ul li {
+  position:relative;
+  left:-20px; /*This was not needed in my IDE*/
+  list-style:none;
+	overflow: hidden;
+	height: 30px;
+	border: solid gray;
+	border-width: 0px 0px 1px 0px;
+	font-size: 14px;
+	line-height: 30px;
+}
+/* CONTENT *************************/
+
+#content {
+	display: inline-block;
+	float: right;
+	margin: auto;
+	width: 75%;
+	vertical-align: top;
+}
+#content h1 {
+	margin-top: 20px;
+}
+#content p {
+	margin: 20px auto 20px auto;
+	width: 70%;
+}
+
+ul li {
+  color: aliceblue;
+  cursor: pointer;
+}
